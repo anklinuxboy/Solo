@@ -16,6 +16,9 @@ struct ContentView: View {
       AspectVGrid(items: game.cards, aspectRatio: 2/3, content: { card in
         CardView(card: card)
           .padding(6)
+          .onTapGesture {
+            game.choose(card)
+          }
       })
     }
   }
@@ -26,8 +29,14 @@ struct CardView: View {
   
   var body: some View {
     ZStack {
-      RoundedRectangle(cornerRadius: 10.0)
-        .stroke(lineWidth: 2.0)
+      let shape = RoundedRectangle(cornerRadius: 10.0)
+      if card.selected {
+        shape.foregroundColor(Color.gray)
+          .opacity(0.2)
+      } else {
+        shape.stroke(lineWidth: 2.0)
+          .foregroundColor(Color.black)
+      }
       numberOfViews(card: card)
         .padding(6)
     }

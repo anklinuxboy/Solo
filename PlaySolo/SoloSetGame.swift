@@ -16,6 +16,10 @@ class SoloSetGame: ObservableObject {
     game = SetGame()
   }
   
+  func choose(_ card: Card) {
+    game.choose(card)
+  }
+  
   var cards: [Card] {
     return game.cards
   }

@@ -26,6 +26,14 @@ struct SetGame {
     cards.shuffle()
   }
   
+  mutating func choose(_ card: Card) {
+    if let index = cards.firstIndex(where: { $0.id == card.id }),
+       !cards[index].isMatched,
+       !cards[index].selected {
+      cards[index].selected = true
+    }
+  }
+  
   struct Card: Identifiable {
     var id: Int
     var isMatched = false
